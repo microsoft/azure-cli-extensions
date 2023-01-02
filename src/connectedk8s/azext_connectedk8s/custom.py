@@ -24,7 +24,6 @@ from knack.util import CLIError
 from knack.log import get_logger
 from knack.prompting import prompt_y_n
 from knack.prompting import NoTTYException
-from azure.cli.core.commands.client_factory import get_subscription_id
 from azure.cli.core._profile import Profile
 from azure.cli.core.util import sdk_no_wait
 from azure.cli.core import telemetry
@@ -53,22 +52,23 @@ logger = get_logger(__name__)
 # pylint: disable=too-many-statements
 # pylint: disable=line-too-long
 
+def get_subscription(cmd):
+    profile = Profile(cli_ctx=cmd.cli_ctx)
+    return profile.get_subscription()
 
 def create_connectedk8s(cmd, client, resource_group_name, cluster_name, https_proxy="", http_proxy="", no_proxy="", proxy_cert="", location=None,
                         kube_config=None, kube_context=None, no_wait=False, tags=None, distribution='auto', infrastructure='auto',
                         disable_auto_upgrade=False, cl_oid=None, onboarding_timeout="600"):
     logger.warning("This operation might take a while...\n")
 
-    # Setting subscription id
-    subscription_id = get_subscription_id(cmd.cli_ctx)
+    # Setting subscription id and Tenant Id
+    subscription = get_subscription(cmd)
+    subscription_id = subscription["id"]
+    onboarding_tenant_id = subscription["homeTenantId"]
 
     # Send cloud information to telemetry
     azure_cloud = send_cloud_telemetry(cmd)
-
-    # Fetching Tenant Id
-    graph_client = _graph_client_factory(cmd.cli_ctx)
-    onboarding_tenant_id = graph_client.config.tenant_id
-
+    
     # Checking provider registration status
     utils.check_provider_registrations(cmd.cli_ctx)
 
