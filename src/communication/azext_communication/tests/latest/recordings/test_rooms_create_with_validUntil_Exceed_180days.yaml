@@ -1,6 +1,6 @@
 interactions:
 - request:
-    body: '{"validFrom": "2023-10-16T17:13:36.379953", "validUntil": "2024-05-03T16:13:36.379953",
+    body: '{"validFrom": "2024-04-22T08:31:27.257038", "validUntil": "2024-11-08T07:31:27.257038",
       "pstnDialOutEnabled": false}'
     headers:
       Accept:
@@ -14,19 +14,19 @@ interactions:
       Content-Type:
       - application/json
       Repeatability-First-Sent:
-      - Mon, 16 Oct 2023 16:13:36 GMT
+      - Mon, 22 Apr 2024 07:31:27 GMT
       Repeatability-Request-Id:
-      - f5fa0267-6c3e-11ee-a86d-8cf8c5abc371
+      - 5478d433-007a-11ef-a113-e4fd45a09c30
       User-Agent:
-      - AzureCli/1.7.2b1 azsdk-python-communication-rooms/1.1.0b1 Python/3.11.5 (Windows-10-10.0.22621-SP0)
+      - AzureCli/1.8.0b1 azsdk-python-communication-rooms/1.1.0b1 Python/3.8.10 (Windows-10-10.0.22631-SP0)
       x-ms-content-sha256:
-      - UjUF3RVFY92HljPSHH+J3lf672VDuHtcWi0j4M9fRSI=
+      - KuNlkG9z3WKLzs3BV8li0PhwYRLxvgdUgXdwD8LZod0=
       x-ms-date:
-      - Mon, 16 Oct 2023 16:13:36 GMT
+      - Mon, 22 Apr 2024 07:31:27 GMT
       x-ms-return-client-request-id:
       - 'true'
     method: POST
-    uri: https://sanitized.communication.azure.com/rooms?api-version=2023-10-30-preview
+    uri: https://sanitized.unitedstates.communication.azure.com/rooms?api-version=2023-10-30-preview
   response:
     body:
       string: '{"error": {"code": "BadRequest", "message": "The request could not
@@ -37,15 +37,17 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Mon, 16 Oct 2023 16:13:38 GMT
+      - Mon, 22 Apr 2024 07:31:27 GMT
       ms-cv:
-      - qih+7tXIBU+QFAmYR6xElg.0
+      - K86413Y4nEeHt5qCXpT/dw.0
       request-context:
       - appId=
+      strict-transport-security:
+      - max-age=31536000;includeSubDomains
       transfer-encoding:
       - chunked
       x-azure-ref:
-      - 0MmEtZQAAAABmvwxOx/W1T7QYlXSoQmEMWVZSMzExMDAwMTE1MDQ3ADlmYzdiNTE5LWE4Y2MtNGY4OS05MzVlLWM5MTQ4YWUwOWU4MQ==
+      - 0TxImZgAAAAAicXtwP6C9R5VyNUVVSoZ7U04xRURHRTIxMTkAOWZjN2I1MTktYThjYy00Zjg5LTkzNWUtYzkxNDhhZTA5ZTgx
       x-cache:
       - CONFIG_NOCACHE
       x-ms-error-code:

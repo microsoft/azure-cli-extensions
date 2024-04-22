@@ -13,45 +13,47 @@ interactions:
       Content-Type:
       - application/json
       Repeatability-First-Sent:
-      - Mon, 16 Oct 2023 16:13:35 GMT
+      - Mon, 22 Apr 2024 07:33:08 GMT
       Repeatability-Request-Id:
-      - f55a9daa-6c3e-11ee-a417-8cf8c5abc371
+      - 90905214-007a-11ef-92b6-e4fd45a09c30
       User-Agent:
-      - AzureCli/1.7.2b1 azsdk-python-communication-rooms/1.1.0b1 Python/3.11.5 (Windows-10-10.0.22621-SP0)
+      - AzureCli/1.8.0b1 azsdk-python-communication-rooms/1.1.0b1 Python/3.8.10 (Windows-10-10.0.22631-SP0)
       x-ms-content-sha256:
       - 2xVVJJKx5brgL5bSWgeu9hhccJP/PkHHEzXUfUClsMI=
       x-ms-date:
-      - Mon, 16 Oct 2023 16:13:35 GMT
+      - Mon, 22 Apr 2024 07:33:08 GMT
       x-ms-return-client-request-id:
       - 'true'
     method: POST
-    uri: https://sanitized.communication.azure.com/rooms?api-version=2023-10-30-preview
+    uri: https://sanitized.unitedstates.communication.azure.com/rooms?api-version=2023-10-30-preview
   response:
     body:
-      string: '{"id": "sanitized", "createdAt": "2023-10-16T16:13:37.4627844+00:00",
-        "validFrom": "2023-10-16T16:13:37.2658638+00:00", "validUntil": "2024-04-13T16:13:37.2658638+00:00",
+      string: '{"id": "sanitized", "createdAt": "2024-04-22T07:33:09.2585259+00:00",
+        "validFrom": "2024-04-22T07:33:08.9392998+00:00", "validUntil": "2024-10-19T07:33:08.9392998+00:00",
         "pstnDialOutEnabled": false}'
     headers:
       api-deprecated-versions:
       - 2021-04-07, 2022-02-01
       api-supported-versions:
-      - 2023-03-31-preview, 2023-06-14, 2023-10-30-preview
+      - 2023-03-31-preview, 2023-06-14, 2023-10-30-preview, 2024-04-15
       content-type:
       - application/json; charset=utf-8
       date:
-      - Mon, 16 Oct 2023 16:13:36 GMT
+      - Mon, 22 Apr 2024 07:33:09 GMT
       location:
-      - '99434353617077843'
+      - '99437302417989482'
       ms-cv:
-      - vRXE75XHQEiVZ97vxjQR5A.0
+      - NsBhTlvu6UGPfhVSi8IdLw.0
       repeatability-result:
       - accepted
       request-context:
       - appId=
+      strict-transport-security:
+      - max-age=31536000;includeSubDomains
       transfer-encoding:
       - chunked
       x-azure-ref:
-      - 0MGEtZQAAAADtht2x+hheSaI016Hz6CQeWVZSMzExMDAwMTE1MDQ5ADlmYzdiNTE5LWE4Y2MtNGY4OS05MzVlLWM5MTQ4YWUwOWU4MQ==
+      - 0tBImZgAAAAAyaOr4C9w9TYZ4VeQmXnk+U04xRURHRTMwMTIAOWZjN2I1MTktYThjYy00Zjg5LTkzNWUtYzkxNDhhZTA5ZTgx
       x-cache:
       - CONFIG_NOCACHE
     status:
@@ -69,15 +71,15 @@ interactions:
       Content-Length:
       - '0'
       User-Agent:
-      - AzureCli/1.7.2b1 azsdk-python-communication-rooms/1.1.0b1 Python/3.11.5 (Windows-10-10.0.22621-SP0)
+      - AzureCli/1.8.0b1 azsdk-python-communication-rooms/1.1.0b1 Python/3.8.10 (Windows-10-10.0.22631-SP0)
       x-ms-content-sha256:
       - 47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=
       x-ms-date:
-      - Mon, 16 Oct 2023 16:13:37 GMT
+      - Mon, 22 Apr 2024 07:33:09 GMT
       x-ms-return-client-request-id:
       - 'true'
     method: DELETE
-    uri: https://sanitized.communication.azure.com/rooms/sanitized?api-version=2023-10-30-preview
+    uri: https://sanitized.unitedstates.communication.azure.com/rooms/sanitized?api-version=2023-10-30-preview
   response:
     body:
       string: ''
@@ -85,15 +87,17 @@ interactions:
       api-deprecated-versions:
       - 2021-04-07, 2022-02-01
       api-supported-versions:
-      - 2023-03-31-preview, 2023-06-14, 2023-10-30-preview
+      - 2023-03-31-preview, 2023-06-14, 2023-10-30-preview, 2024-04-15
       date:
-      - Mon, 16 Oct 2023 16:13:40 GMT
+      - Mon, 22 Apr 2024 07:33:10 GMT
       ms-cv:
-      - 4Opb7AhBcU+BaMvFVUyCZA.0
+      - g+fmKK2NBES8U2DqGyv1WA.0
       request-context:
       - appId=
+      strict-transport-security:
+      - max-age=31536000;includeSubDomains
       x-azure-ref:
-      - 0M2EtZQAAAAC7g6/zCRExSoy5AMlKtc03WVZSMzExMDAwMTE1MDIxADlmYzdiNTE5LWE4Y2MtNGY4OS05MzVlLWM5MTQ4YWUwOWU4MQ==
+      - 0tRImZgAAAACinnd3UMQAToAUdgUZ/JrvU04xRURHRTMwMTcAOWZjN2I1MTktYThjYy00Zjg5LTkzNWUtYzkxNDhhZTA5ZTgx
       x-cache:
       - CONFIG_NOCACHE
     status:
