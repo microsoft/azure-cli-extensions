@@ -1,0 +1,63 @@
+interactions:
+- request:
+    body: '{"validFrom": "2024-04-22T11:21:13.800205", "validUntil": "2024-04-22T12:21:13.800205",
+      "pstnDialOutEnabled": true}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '115'
+      Content-Type:
+      - application/json
+      Repeatability-First-Sent:
+      - Mon, 22 Apr 2024 10:21:13 GMT
+      Repeatability-Request-Id:
+      - 0c04ebe3-0092-11ef-a80c-e4fd45a09c30
+      User-Agent:
+      - AzureCli/1.9.0 azsdk-python-communication-rooms/1.1.0b1 Python/3.8.10 (Windows-10-10.0.22631-SP0)
+      x-ms-content-sha256:
+      - LVseNmQmCelz1cGVvIRexAYBN0hw8KHdJHDJg91+dk0=
+      x-ms-date:
+      - Mon, 22 Apr 2024 10:21:13 GMT
+      x-ms-return-client-request-id:
+      - 'true'
+    method: POST
+    uri: https://sanitized.unitedstates.communication.azure.com/rooms?api-version=2023-10-30-preview
+  response:
+    body:
+      string: '{"id": "sanitized", "createdAt": "2024-04-22T10:21:14.6140907+00:00",
+        "validFrom": "2024-04-22T11:21:13.800205+00:00", "validUntil": "2024-04-22T12:21:13.800205+00:00",
+        "pstnDialOutEnabled": true}'
+    headers:
+      api-deprecated-versions:
+      - 2021-04-07, 2022-02-01
+      api-supported-versions:
+      - 2023-03-31-preview, 2023-06-14, 2023-10-30-preview, 2024-04-15
+      content-type:
+      - application/json; charset=utf-8
+      date:
+      - Mon, 22 Apr 2024 10:21:14 GMT
+      location:
+      - '99476574041280229'
+      ms-cv:
+      - s0s8W8qby0e39AAX2OVryg.0
+      repeatability-result:
+      - accepted
+      request-context:
+      - appId=
+      strict-transport-security:
+      - max-age=31536000;includeSubDomains
+      transfer-encoding:
+      - chunked
+      x-azure-ref:
+      - 0GjomZgAAAAA5GHoVUky0T7OpWCZ52J+9U04xRURHRTMxMjEAOWZjN2I1MTktYThjYy00Zjg5LTkzNWUtYzkxNDhhZTA5ZTgx
+      x-cache:
+      - CONFIG_NOCACHE
+    status:
+      code: 201
+      message: Created
+version: 1

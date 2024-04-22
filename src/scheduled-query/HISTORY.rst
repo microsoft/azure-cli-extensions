@@ -2,6 +2,22 @@
 
 Release History
 ===============
+0.5.3
+++++++
+* Upgrade antlr to 4.13.1
+
+0.5.2
+++++++
+* Fix scheduled query condition operator mapping
+
+0.5.1
+++++++
+* Supress warning message from antlr 4.9.3
+
+0.5.0
+++++++
+* Update API version to 2021-08-01
+
 0.4.0
 ++++++
 * Add `--skip-query-validation` parameter

@@ -1,0 +1,58 @@
+interactions:
+- request:
+    body: '{"validFrom": "2024-04-22T11:21:10.403483", "validUntil": "2024-11-08T10:21:10.403483",
+      "pstnDialOutEnabled": false}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '116'
+      Content-Type:
+      - application/json
+      Repeatability-First-Sent:
+      - Mon, 22 Apr 2024 10:21:10 GMT
+      Repeatability-Request-Id:
+      - 09fef7d3-0092-11ef-a989-e4fd45a09c30
+      User-Agent:
+      - AzureCli/1.9.0 azsdk-python-communication-rooms/1.1.0b1 Python/3.8.10 (Windows-10-10.0.22631-SP0)
+      x-ms-content-sha256:
+      - 5tJO2AycGCyxmVK1K63cwUVIa2G4XnpowgJc72N2qh0=
+      x-ms-date:
+      - Mon, 22 Apr 2024 10:21:10 GMT
+      x-ms-return-client-request-id:
+      - 'true'
+    method: POST
+    uri: https://sanitized.unitedstates.communication.azure.com/rooms?api-version=2023-10-30-preview
+  response:
+    body:
+      string: '{"error": {"code": "BadRequest", "message": "The request could not
+        be understood by the server due to malformed syntax.", "details": [{"code":
+        "BadArgument", "message": "The time range is incorrect, or larger than 180
+        days.", "target": "ValidUntil"}]}}'
+    headers:
+      content-type:
+      - application/json; charset=utf-8
+      date:
+      - Mon, 22 Apr 2024 10:21:10 GMT
+      ms-cv:
+      - PMaFvrRcj0iN2AbAz4ULcA.0
+      request-context:
+      - appId=
+      strict-transport-security:
+      - max-age=31536000;includeSubDomains
+      transfer-encoding:
+      - chunked
+      x-azure-ref:
+      - 0FjomZgAAAADbC5r2RTlqRbBHPe4JzdedU04xRURHRTMwMjAAOWZjN2I1MTktYThjYy00Zjg5LTkzNWUtYzkxNDhhZTA5ZTgx
+      x-cache:
+      - CONFIG_NOCACHE
+      x-ms-error-code:
+      - BadRequest
+    status:
+      code: 400
+      message: Bad Request
+version: 1

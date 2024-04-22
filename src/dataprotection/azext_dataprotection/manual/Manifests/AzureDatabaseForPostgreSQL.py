@@ -6,13 +6,35 @@
 manifest = '''
 {
   "isProxyResource": true,
+  "enableDataSourceSetInfo": false,
   "resourceType": "Microsoft.DBforPostgreSQL/servers/databases",
   "parentResourceType": "Microsoft.DBforPostgreSQL/servers",
   "datasourceType": "Microsoft.DBforPostgreSQL/servers/databases",
   "allowedRestoreModes": [ "RecoveryPointBased" ],
   "allowedRestoreTargetTypes": [ "AlternateLocation", "RestoreAsFiles" ],
   "itemLevelRecoveyEnabled": false,
+  "addBackupDatasourceParametersList": false,
+  "addDataStoreParametersList": false,
+  "friendlyNameRequired": false,
   "supportSecretStoreAuthentication": true,
+  "backupVaultPermissions": [
+    {
+      "roleDefinitionName": "Reader",
+      "type": "DataSource"
+    }
+  ],
+  "secretStorePermissions": {
+    "rbacModel": {
+      "roleDefinitionName": "Key Vault Secrets User"
+    },
+    "vaultAccessPolicyModel": {
+      "accessPolicies": {
+        "permissions": {
+          "secrets": [ "Get", "List" ]
+        }
+      }
+    }
+  },
   "policySettings": {
     "supportedRetentionTags": [ "Weekly", "Monthly", "Yearly" ],
     "supportedDatastoreTypes": [ "VaultStore", "ArchiveStore" ],

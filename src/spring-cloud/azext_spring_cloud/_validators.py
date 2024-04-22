@@ -12,14 +12,14 @@ import zipfile
 from azure.cli.core import telemetry
 from azure.cli.core.commands.client_factory import get_subscription_id
 from azure.cli.core.commands.validators import validate_tag
-from azure.cli.core.azclierror import InvalidArgumentValueError
-from ._utils import _get_file_type
-from msrestazure.tools import is_valid_resource_id
-from msrestazure.tools import parse_resource_id
-from msrestazure.tools import resource_id
+from azure.cli.core.azclierror import ArgumentUsageError, InvalidArgumentValueError
+from knack.validators import DefaultStr
+from azure.mgmt.core.tools import is_valid_resource_id
+from azure.mgmt.core.tools import parse_resource_id
+from azure.mgmt.core.tools import resource_id
 from knack.log import get_logger
-from ._utils import ApiType
-from ._utils import _get_rg_location
+from ._utils import (ApiType, _get_rg_location, _get_file_type, _get_sku_name)
+from .vendored_sdks.appplatform.v2020_07_01 import models
 
 logger = get_logger(__name__)
 
@@ -40,11 +40,56 @@ def validate_location(namespace):
                                       for piece in location_slice])
 
 
-def validate_sku(namespace):
-    if namespace.sku is not None:
-        namespace.sku = namespace.sku.upper()
-        if namespace.sku not in ['BASIC', 'STANDARD']:
-            raise InvalidArgumentValueError("The pricing tier only accepts value [Basic, Standard]")
+def validate_sku(cmd, namespace):
+    if not namespace.sku:
+        return
+    if namespace.sku.lower() == 'enterprise':
+        _validate_saas_provider(cmd, namespace)
+        _validate_terms(cmd, namespace)
+    else:
+        _check_tanzu_components_not_enable(cmd, namespace)
+    normalize_sku(cmd, namespace)
+
+
+def normalize_sku(cmd, namespace):
+    if namespace.sku:
+        namespace.sku = models.Sku(name=_get_sku_name(namespace.sku), tier=namespace.sku)
+
+
+def _validate_saas_provider(cmd, namespace):
+    from azure.cli.core.commands.client_factory import get_mgmt_service_client
+    from azure.cli.core.profiles import ResourceType
+    client = get_mgmt_service_client(cmd.cli_ctx, ResourceType.MGMT_RESOURCE_RESOURCES).providers
+    if client.get('Microsoft.SaaS').registration_state != 'Registered':
+        raise InvalidArgumentValueError('Microsoft.SaaS resource provider is not registered.\n'
+                                        'Run "az provider register -n Microsoft.SaaS" to register.')
+
+
+def _validate_terms(cmd, namespace):
+    from azure.mgmt.marketplaceordering import MarketplaceOrderingAgreements
+    from azure.cli.core.commands.client_factory import get_mgmt_service_client
+    client = get_mgmt_service_client(cmd.cli_ctx, MarketplaceOrderingAgreements).marketplace_agreements
+    term = client.get(offer_type="virtualmachine",
+                      publisher_id='vmware-inc',
+                      offer_id='azure-spring-cloud-vmware-tanzu-2',
+                      plan_id='tanzu-asc-ent-mtr')
+    if not term.accepted:
+        raise InvalidArgumentValueError('Terms for Azure Spring Cloud Enterprise is not accepted.\n'
+                                        'Run "az term accept --publisher vmware-inc '
+                                        '--product azure-spring-cloud-vmware-tanzu-2 '
+                                        '--plan tanzu-asc-ent-mtr" to accept the term.')
+
+
+def _check_tanzu_components_not_enable(cmd, namespace):
+    suffix = 'can only be used for Azure Spring Cloud Enterprise. Please add --sku="Enterprise" to create Enterprise instance.'
+    if namespace.enable_application_configuration_service:
+        raise ArgumentUsageError('--enable-application-configuration-service {}'.format(suffix))
+    if namespace.enable_service_registry:
+        raise ArgumentUsageError('--enable-service-registry {}'.format(suffix))
+    if namespace.enable_gateway:
+        raise ArgumentUsageError('--enable-gateway {}'.format(suffix))
+    if namespace.enable_api_portal:
+        raise ArgumentUsageError('--enable-api-portal {}'.format(suffix))
 
 
 def validate_instance_count(namespace):
@@ -254,51 +299,62 @@ def validate_vnet(cmd, namespace):
         instance_location_slice = instance_location.split(" ")
         instance_location = "".join([piece.lower()
                                      for piece in instance_location_slice])
-    if vnet_obj.location.lower() != instance_location.lower():
+    if vnet_obj["location"].lower() != instance_location.lower():
         raise InvalidArgumentValueError('--vnet and Azure Spring Cloud instance should be in the same location.')
-    for subnet in vnet_obj.subnets:
+    for subnet in vnet_obj["subnets"]:
         _validate_subnet(namespace, subnet)
     _validate_route_table(namespace, vnet_obj)
 
     if namespace.reserved_cidr_range:
         _validate_cidr_range(namespace)
     else:
-        namespace.reserved_cidr_range = _set_default_cidr_range(vnet_obj.address_space.address_prefixes) if \
-            vnet_obj and vnet_obj.address_space and vnet_obj.address_space.address_prefixes \
+        namespace.reserved_cidr_range = _set_default_cidr_range(vnet_obj["addressSpace"]["addressPrefixes"]) if \
+            vnet_obj and vnet_obj.get("addressSpace", None) and vnet_obj["addressSpace"].get("addressPrefixes", None) \
             else '10.234.0.0/16,10.244.0.0/16,172.17.0.1/16'
 
 
 def _validate_subnet(namespace, subnet):
     name = ''
     limit = 32
-    if subnet.id.lower() == namespace.app_subnet.lower():
+    if subnet["id"].lower() == namespace.app_subnet.lower():
         name = 'app-subnet'
         limit = 28
-    elif subnet.id.lower() == namespace.service_runtime_subnet.lower():
+    elif subnet["id"].lower() == namespace.service_runtime_subnet.lower():
         name = 'service-runtime-subnet'
         limit = 28
     else:
         return
-    if subnet.ip_configurations:
+    if subnet.get("ipConfigurations", None):
         raise InvalidArgumentValueError('--{} should not have connected device.'.format(name))
-    address = ip_network(subnet.address_prefix, strict=False)
+    address = ip_network(subnet["addressPrefix"], strict=False)
     if address.prefixlen > limit:
         raise InvalidArgumentValueError('--{0} should contain at least /{1} address, got /{2}'.format(name, limit, address.prefixlen))
 
 
 def _get_vnet(cmd, vnet_id):
     vnet = parse_resource_id(vnet_id)
-    network_client = _get_network_client(cmd.cli_ctx, subscription_id=vnet['subscription'])
-    return network_client.virtual_networks.get(vnet['resource_group'], vnet['resource_name'])
+    from .aaz.latest.network.vnet import Show as _VirtualNetworkShow
 
+    class VirtualNetworkShow(_VirtualNetworkShow):
+        @classmethod
+        def _build_arguments_schema(cls, *args, **kwargs):
+            from azure.cli.core.aaz import AAZStrArg
+            args_schema = super()._build_arguments_schema(*args, **kwargs)
+            args_schema.subscription_id = AAZStrArg()
+            return args_schema
 
-def _get_network_client(cli_ctx, subscription_id=None):
-    from azure.cli.core.profiles import ResourceType, get_api_version
-    from azure.cli.core.commands.client_factory import get_mgmt_service_client
-    return get_mgmt_service_client(cli_ctx,
-                                   ResourceType.MGMT_NETWORK,
-                                   subscription_id=subscription_id,
-                                   api_version=get_api_version(cli_ctx, ResourceType.MGMT_NETWORK))
+        def pre_operations(self):
+            from azure.cli.core.aaz import has_value
+            args = self.ctx.args
+            if has_value(args.subscription_id):
+                self.ctx._subscription_id = args.subscription_id.to_serialized_data()
+
+    get_args = {
+        'name': vnet['resource_name'],
+        'subscription_id': vnet['subscription'],
+        'resource_group': vnet['resource_group']
+    }
+    return VirtualNetworkShow(cli_ctx=cmd.cli_ctx)(command_args=get_args)
 
 
 def _get_authorization_client(cli_ctx, subscription_id=None):
@@ -429,7 +485,7 @@ def validate_vnet_required_parameters(namespace):
        not namespace.reserved_cidr_range and \
        not namespace.vnet:
         return
-    if namespace.sku and namespace.sku.lower() == 'basic':
+    if namespace.sku and _parse_sku_name(namespace.sku) == 'basic':
         raise InvalidArgumentValueError('Virtual Network Injection is not supported for Basic tier.')
     if not namespace.app_subnet \
        or not namespace.service_runtime_subnet:
@@ -444,6 +500,14 @@ def validate_node_resource_group(namespace):
     _validate_resource_group_name(namespace.app_network_resource_group, 'app-network-resource-group')
 
 
+def _parse_sku_name(sku):
+    if not sku:
+        return 'standard'
+    if type(sku) is str or type(sku) is DefaultStr:
+        return sku.lower()
+    return sku.tier.lower()
+
+
 def _validate_resource_group_name(name, message_name):
     if not name:
         return
@@ -455,11 +519,11 @@ def _validate_resource_group_name(name, message_name):
 def _validate_route_table(namespace, vnet_obj):
     app_route_table_id = ""
     runtime_route_table_id = ""
-    for subnet in vnet_obj.subnets:
-        if subnet.id.lower() == namespace.app_subnet.lower() and subnet.route_table:
-            app_route_table_id = subnet.route_table.id
-        if subnet.id.lower() == namespace.service_runtime_subnet.lower() and subnet.route_table:
-            runtime_route_table_id = subnet.route_table.id
+    for subnet in vnet_obj["subnets"]:
+        if subnet["id"].lower() == namespace.app_subnet.lower() and subnet.get("routeTable", None):
+            app_route_table_id = subnet["routeTable"]["id"]
+        if subnet["id"].lower() == namespace.service_runtime_subnet.lower() and subnet.get("routeTable", None):
+            runtime_route_table_id = subnet["routeTable"]["id"]
 
     if app_route_table_id and runtime_route_table_id:
         if app_route_table_id == runtime_route_table_id:

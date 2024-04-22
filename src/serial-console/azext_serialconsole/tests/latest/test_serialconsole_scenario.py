@@ -18,6 +18,7 @@ from azure.cli.core.azclierror import ForbiddenError, ResourceNotFoundError
 from azure.cli.core.azclierror import AzureConnectionError
 from azure.cli.core.azclierror import ForbiddenError
 from azure.core.exceptions import ResourceNotFoundError as ComputeClientResourceNotFoundError
+from azure.cli.testsdk.scenario_tests import AllowLargeResponse
 
 TEST_DIR = os.path.abspath(os.path.join(os.path.abspath(__file__), '..'))
 
@@ -50,8 +51,7 @@ class CheckResourceTest(ScenarioTest):
         self.cmd('az vmss update --name {name} --resource-group {rg} --set virtualMachineProfile.diagnosticsProfile="{{\\"bootDiagnostics\\": {{\\"Enabled\\" : \\"True\\",\\"StorageUri\\" : null}}}}"')
         self.cmd('az vmss update-instances -g {rg} -n {name} --instance-ids {id}')
 
-        with self.assertRaises(AzureConnectionError):
-            check_resource(self.cli_ctx, resource_group, name, iid)
+        check_resource(self.cli_ctx, resource_group, name, iid)
 
         self.cmd('az vmss deallocate -g {rg} -n {name} --instance-ids {id}')
 
@@ -61,8 +61,7 @@ class CheckResourceTest(ScenarioTest):
         self.cmd('az vmss start -g {rg} -n {name} --instance-ids {id}')
         self.cmd('az vmss stop -g {rg} -n {name} --instance-ids {id}')
 
-        with self.assertRaises(AzureConnectionError):
-            check_resource(self.cli_ctx, resource_group, name, iid)
+        check_resource(self.cli_ctx, resource_group, name, iid)
 
         self.cmd('az vmss start -g {rg} -n {name} --instance-ids {id}')
         self.cmd('az vmss update --name {name} --resource-group {rg} --set virtualMachineProfile.diagnosticsProfile="{{\\"bootDiagnostics\\": {{\\"Enabled\\" : \\"True\\",\\"StorageUri\\":\\"https://{sa}.blob.core.windows.net/\\"}}}}"')
@@ -112,11 +111,11 @@ class CheckResourceTest(ScenarioTest):
 
         self.cmd('az vmss update-instances -g {rg} -n {name} --instance-ids {id}')
 
-        with self.assertRaises(AzureConnectionError):
-            check_resource(self.cli_ctx, resource_group, name, iid)
+        check_resource(self.cli_ctx, resource_group, name, iid)
 
     @ResourceGroupPreparer(name_prefix='cli_test_serialconsole', location='westus2')
     @StorageAccountPreparer(name_prefix='cli', location="westus2")
+    @AllowLargeResponse()
     def test_check_resource_VM(self, resource_group, storage_account):
         name = self.create_random_name(prefix='cli', length=24)
         self.kwargs.update({
@@ -139,8 +138,7 @@ class CheckResourceTest(ScenarioTest):
 
         self.cmd('az vm boot-diagnostics enable -g {rg} -n {name}')
 
-        with self.assertRaises(AzureConnectionError):
-            check_resource(self.cli_ctx, resource_group, name, None)
+        check_resource(self.cli_ctx, resource_group, name, None)
 
         self.cmd('az vm deallocate -g {rg} -n {name}')
 
@@ -150,8 +148,7 @@ class CheckResourceTest(ScenarioTest):
         self.cmd('az vm start -g {rg} -n {name}')
         self.cmd('az vm stop -g {rg} -n {name}')
 
-        with self.assertRaises(AzureConnectionError):
-            check_resource(self.cli_ctx, resource_group, name, None)
+        check_resource(self.cli_ctx, resource_group, name, None)
 
         self.cmd('az vm boot-diagnostics disable -g {rg} -n {name}')
 

@@ -32,6 +32,11 @@ helps['vmware addon vr'] = """
     short-summary: Commands to manage a vSphere Replication (VR) addon.
 """
 
+helps['vmware addon arc'] = """
+    type: group
+    short-summary: Commands to manage a Arc addon.
+"""
+
 helps['vmware private-cloud'] = """
     type: group
     short-summary: Commands to manage private clouds.
@@ -39,7 +44,7 @@ helps['vmware private-cloud'] = """
 
 helps['vmware cluster'] = """
     type: group
-    short-summary: Commands to manage clusters in a private cloud.
+    short-summary: Commands to manage all the clusters in a private cloud, excluding the first cluster which is the default management cluster. The default management cluster is created and managed as part of the private cloud. For management cluster commands, use az vmware private-cloud.
 """
 
 helps['vmware authorization'] = """
@@ -69,27 +74,77 @@ helps['vmware cluster create'] = """
 
 helps['vmware cluster delete'] = """
     type: command
-    short-summary: Delete a cluster in a private cloud.
+    short-summary: Delete a cluster in a private cloud, excluding the first cluster which is the default management cluster. The default management cluster is created and managed as part of the private cloud. To delete the management cluster, use az vmware private-cloud delete.
 """
 
 helps['vmware cluster list'] = """
     type: command
-    short-summary: List clusters in a private cloud.
+    short-summary: List clusters in a private cloud, excluding the first cluster which is the default management cluster. The default management cluster is created and managed as part of the private cloud. To view details of the management cluster, use az vmware private-cloud show.
 """
 
 helps['vmware cluster show'] = """
     type: command
-    short-summary: Show details of a cluster in a private cloud.
+    short-summary: Show details of a cluster in a private cloud, excluding the first cluster which is the default management cluster. The default management cluster is created and managed as part of the private cloud. To view details of the management cluster, use az vmware private-cloud show.
 """
 
 helps['vmware cluster update'] = """
     type: command
-    short-summary: Update a cluster in a private cloud.
+    short-summary: Update a cluster in a private cloud, excluding the first cluster which is the default management cluster. The default management cluster is created and managed as part of the private cloud. To update details of the management cluster, use az vmware private-cloud update.
+"""
+
+helps['vmware cluster list-zones'] = """
+    type: command
+    short-summary: List hosts by zone in a cluster in a private cloud, including the first cluster which is the default management cluster. The default management cluster is created and managed as part of the private cloud.
+"""
+
+helps['vmware private-cloud add-identity-source'] = """
+    type: command
+    short-summary: Add a vCenter Single Sign On Identity Source to a private cloud.
 """
 
 helps['vmware private-cloud addidentitysource'] = """
     type: command
     short-summary: Add a vCenter Single Sign On Identity Source to a private cloud.
+"""
+
+helps['vmware private-cloud add-cmk-encryption'] = """
+    type: command
+    short-summary: Add a Customer Managed Keys Encryption to a private cloud.
+"""
+
+helps['vmware private-cloud delete-cmk-encryption'] = """
+    type: command
+    short-summary: Delete a Customer Managed Keys Encryption from a private cloud.
+"""
+
+helps['vmware private-cloud enable-cmk-encryption'] = """
+    type: command
+    short-summary: Enable a Customer Managed Keys Encryption to a private cloud.
+"""
+
+helps['vmware private-cloud disable-cmk-encryption'] = """
+    type: command
+    short-summary: Disable a Customer Managed Keys Encryption from a private cloud.
+"""
+
+helps['vmware private-cloud identity'] = """
+    type: group
+    short-summary: Commands for Managed Identity in a private cloud.
+"""
+
+helps['vmware private-cloud identity assign'] = """
+    type: command
+    short-summary: Assign a Managed Identity in a private cloud.
+"""
+
+helps['vmware private-cloud identity remove'] = """
+    type: command
+    short-summary: Remove a Managed Identity in a private cloud.
+"""
+
+helps['vmware private-cloud identity show'] = """
+    type: command
+    short-summary: Show Managed Identities in a private cloud.
 """
 
 helps['vmware private-cloud create'] = """
@@ -102,6 +157,11 @@ helps['vmware private-cloud delete'] = """
     short-summary: Delete a private cloud.
 """
 
+helps['vmware private-cloud delete-identity-source'] = """
+    type: command
+    short-summary: Delete a vCenter Single Sign On Identity Source for a private cloud.
+"""
+
 helps['vmware private-cloud deleteidentitysource'] = """
     type: command
     short-summary: Delete a vCenter Single Sign On Identity Source for a private cloud.
@@ -110,6 +170,11 @@ helps['vmware private-cloud deleteidentitysource'] = """
 helps['vmware private-cloud list'] = """
     type: command
     short-summary: List the private clouds.
+"""
+
+helps['vmware private-cloud list-admin-credentials'] = """
+    type: command
+    short-summary: List the admin credentials for the private cloud.
 """
 
 helps['vmware private-cloud listadmincredentials'] = """
@@ -140,7 +205,7 @@ helps['vmware private-cloud rotate-nsxt-password'] = """
     short-summary: Rotate the NSX-T Manager password.
     examples:
     - name: Rotate the NSX-T Manager password.
-      text: az vmware private-cloud rotate-nsxt-password --resource-group MyResourceGroup --private-cloud MyPrivateCloud
+      text: az vmware private-cloud rotate-nsxt-password
 """
 
 helps['vmware authorization create'] = """
@@ -187,8 +252,17 @@ helps['vmware location checkquotaavailability'] = """
     type: command
     short-summary: Return quota for subscription by region.
 """
+helps['vmware location check-quota-availability'] = """
+    type: command
+    short-summary: Return quota for subscription by region.
+"""
 
 helps['vmware location checktrialavailability'] = """
+    type: command
+    short-summary: Return trial status for subscription by region.
+"""
+
+helps['vmware location check-trial-availability'] = """
     type: command
     short-summary: Return trial status for subscription by region.
 """
@@ -280,6 +354,14 @@ helps['vmware addon srm create'] = """
       text: az vmware addon srm create --resource-group MyResourceGroup --private-cloud MyPrivateCloud --license-key "41915-178A8-FF4A4-DB683-6D735"
 """
 
+helps['vmware addon arc create'] = """
+    type: command
+    short-summary: Create an Arc addon for a private cloud.
+    examples:
+    - name: Create an Arc addon.
+      text: az vmware addon arc create --resource-group MyResourceGroup --private-cloud MyPrivateCloud --vcenter "00000000-0000-0000-0000-000000000000"
+"""
+
 helps['vmware addon vr show'] = """
     type: command
     short-summary: Show details of a vSphere Replication (VR) addon for a private cloud.
@@ -302,6 +384,14 @@ helps['vmware addon srm show'] = """
     examples:
     - name: Show details of a Site Recovery Manager (SRM) addon.
       text: az vmware addon srm show --resource-group MyResourceGroup --private-cloud MyPrivateCloud
+"""
+
+helps['vmware addon arc show'] = """
+    type: command
+    short-summary: Show details of an Arc addon for a private cloud.
+    examples:
+    - name: Show details of an Arc addon.
+      text: az vmware addon arc show --resource-group MyResourceGroup --private-cloud MyPrivateCloud
 """
 
 helps['vmware addon vr update'] = """
@@ -328,6 +418,14 @@ helps['vmware addon srm update'] = """
       text: az vmware addon srm update --resource-group MyResourceGroup --private-cloud MyPrivateCloud --license-key "41915-178A8-FF4A4-DB683-6D735"
 """
 
+helps['vmware addon arc update'] = """
+    type: command
+    short-summary: Update an Arc addon for a private cloud.
+    examples:
+    - name: Update an Arc addon.
+      text: az vmware addon arc update --resource-group MyResourceGroup --private-cloud MyPrivateCloud --vcenter "00000000-0000-0000-0000-000000000000"
+"""
+
 helps['vmware addon vr delete'] = """
     type: command
     short-summary: Delete a vSphere Replication (VR) addon for a private cloud.
@@ -350,6 +448,14 @@ helps['vmware addon srm delete'] = """
     examples:
     - name: Delete a Site Recovery Manager (SRM) addon.
       text: az vmware addon srm delete --resource-group MyResourceGroup --private-cloud MyPrivateCloud
+"""
+
+helps['vmware addon arc delete'] = """
+    type: command
+    short-summary: Delete an Arc addon for a private cloud.
+    examples:
+    - name: Delete an Arc addon.
+      text: az vmware addon arc delete --resource-group MyResourceGroup --private-cloud MyPrivateCloud
 """
 
 helps['vmware global-reach-connection'] = """
@@ -492,6 +598,7 @@ helps['vmware script-execution delete'] = """
     - name: Delete a script execution.
       text: az vmware script-execution delete --resource-group group1 --private-cloud cloud1 --name addSsoServer
 """
+
 helps['vmware workload-network'] = """
     type: group
     short-summary: Commands to manage workload-networks in a private cloud.
@@ -739,7 +846,7 @@ helps['vmware workload-network segment create'] = """
     short-summary: Create a segment by ID in a private cloud workload network.
     examples:
     - name: Create a segment by ID in a workload network.
-      text: az vmware workload-network segment create --resource-group group1 --private-cloud cloud1 --segment segment1 --display-name segment1 --connected-gateway /infra/tier-1s/gateway --revision 1 --dhcp-ranges 40.20.0.0 40.20.0.1 --gateway-address 40.20.20.20/16 --port-name port1
+      text: az vmware workload-network segment create --resource-group group1 --private-cloud cloud1 --segment segment1 --display-name segment1 --connected-gateway /infra/tier-1s/gateway --revision 1 --dhcp-ranges 40.20.0.0 40.20.0.1 --gateway-address 40.20.20.20/16
 """
 
 helps['vmware workload-network segment update'] = """
@@ -747,7 +854,7 @@ helps['vmware workload-network segment update'] = """
     short-summary: Update a segment by ID in a private cloud workload network.
     examples:
     - name: Update a segment by ID in a workload network.
-      text: az vmware workload-network segment update --resource-group group1 --private-cloud cloud1 --segment segment1 --display-name segment1 --connected-gateway /infra/tier-1s/gateway --revision 1 --dhcp-ranges 40.20.0.0 40.20.0.1 --gateway-address 40.20.20.20/16 --port-name port1
+      text: az vmware workload-network segment update --resource-group group1 --private-cloud cloud1 --segment segment1 --display-name segment1 --connected-gateway /infra/tier-1s/gateway --revision 1 --dhcp-ranges 40.20.0.0 40.20.0.1 --gateway-address 40.20.20.20/16
 """
 
 helps['vmware workload-network segment delete'] = """
@@ -880,4 +987,112 @@ helps['vmware workload-network gateway show'] = """
     examples:
     - name: Get a Gateway by ID in a workload network.
       text: az vmware workload-network gateway show --resource-group group1 --private-cloud cloud1 --gateway gateway1
+"""
+
+helps['vmware placement-policy'] = """
+    type: group
+    short-summary: Commands to manage placement policies.
+"""
+
+helps['vmware placement-policy list'] = """
+    type: command
+    short-summary: List placement policies in a private cloud cluster.
+    examples:
+    - name: List placement policies.
+      text: az vmware placement-policy list --resource-group group1 --private-cloud cloud1 --cluster-name cluster1
+"""
+
+helps['vmware placement-policy show'] = """
+    type: command
+    short-summary: Get a placement policy by name in a private cloud cluster.
+    examples:
+    - name: Get a placement policy by name.
+      text: az vmware placement-policy show --resource-group group1 --private-cloud cloud1 --cluster-name cluster1 --placement-policy-name policy1
+"""
+
+helps['vmware placement-policy vm-host'] = """
+    type: group
+    short-summary: Commands to manage VM Host placement policies.
+"""
+
+helps['vmware placement-policy vm-host create'] = """
+    type: command
+    short-summary: Create a VM Host placement policy in a private cloud cluster.
+    examples:
+    - name: Create a VM Host placement policy.
+      text: az vmware placement-policy vm-host create --resource-group group1 --private-cloud cloud1 --cluster-name cluster1 --placement-policy-name policy1 --state Enabled --display-name policy1 --vm-members /subscriptions/subId/resourceGroups/group1/providers/Microsoft.AVS/privateClouds/cloud1/clusters/cluster1/virtualMachines/vm-128 /subscriptions/subId/resourceGroups/group1/providers/Microsoft.AVS/privateClouds/cloud1/clusters/cluster1/virtualMachines/vm-256 --host-members fakehost22.nyc1.kubernetes.center fakehost23.nyc1.kubernetes.center --affinity-type AntiAffinity
+"""
+
+helps['vmware placement-policy vm-host update'] = """
+    type: command
+    short-summary: Update a VM Host placement policy in a private cloud cluster.
+    examples:
+    - name: Update a VM Host placement policy.
+      text: az vmware placement-policy vm-host update --resource-group group1 --private-cloud cloud1 --cluster-name cluster1 --placement-policy-name policy1 --state Enabled --vm-members /subscriptions/subId/resourceGroups/group1/providers/Microsoft.AVS/privateClouds/cloud1/clusters/cluster1/virtualMachines/vm-128 /subscriptions/subId/resourceGroups/group1/providers/Microsoft.AVS/privateClouds/cloud1/clusters/cluster1/virtualMachines/vm-256 --host-members fakehost22.nyc1.kubernetes.center fakehost23.nyc1.kubernetes.center
+"""
+
+helps['vmware placement-policy vm-host delete'] = """
+    type: command
+    short-summary: Delete a VM Host placement policy in a private cloud cluster.
+    examples:
+    - name: Delete a VM Host placement policy.
+      text: az vmware placement-policy vm-host delete --resource-group group1 --private-cloud cloud1 --cluster-name cluster1 --placement-policy-name policy1
+"""
+
+helps['vmware placement-policy vm'] = """
+    type: group
+    short-summary: Commands to manage VM placement policies.
+"""
+
+helps['vmware placement-policy vm create'] = """
+    type: command
+    short-summary: Create a VM placement policy in a private cloud cluster.
+    examples:
+    - name: Create a VM placement policy.
+      text: az vmware placement-policy vm create --resource-group group1 --private-cloud cloud1 --cluster-name cluster1 --placement-policy-name policy1 --state Enabled --display-name policy1 --vm-members /subscriptions/subId/resourceGroups/group1/providers/Microsoft.AVS/privateClouds/cloud1/clusters/cluster1/virtualMachines/vm-128 /subscriptions/subId/resourceGroups/group1/providers/Microsoft.AVS/privateClouds/cloud1/clusters/cluster1/virtualMachines/vm-256 --affinity-type AntiAffinity
+"""
+
+helps['vmware placement-policy vm update'] = """
+    type: command
+    short-summary: Update a VM placement policy in a private cloud cluster.
+    examples:
+    - name: Update a VM placement policy.
+      text: az vmware placement-policy vm update --resource-group group1 --private-cloud cloud1 --cluster-name cluster1 --placement-policy-name policy1 --state Enabled --vm-members /subscriptions/subId/resourceGroups/group1/providers/Microsoft.AVS/privateClouds/cloud1/clusters/cluster1/virtualMachines/vm-128 /subscriptions/subId/resourceGroups/group1/providers/Microsoft.AVS/privateClouds/cloud1/clusters/cluster1/virtualMachines/vm-256
+"""
+
+helps['vmware placement-policy vm delete'] = """
+    type: command
+    short-summary: Delete a VM placement policy in a private cloud cluster.
+    examples:
+    - name: Delete a VM placement policy.
+      text: az vmware placement-policy vm delete --resource-group group1 --private-cloud cloud1 --cluster-name cluster1 --placement-policy-name policy1
+"""
+
+helps['vmware vm'] = """
+    type: group
+    short-summary: Commands to manage Virtual Machines.
+"""
+
+helps['vmware vm show'] = """
+    type: command
+    short-summary: Get a virtual machine by ID in a private cloud cluster.
+    examples:
+    - name: Get a virtual machine by ID.
+      text: az vmware vm show --resource-group group1 --private-cloud cloud1 --cluster-name cluster1 --virtual-machine vm-209
+"""
+
+helps['vmware vm list'] = """
+    type: command
+    short-summary: List of virtual machines in a private cloud cluster.
+    examples:
+    - name: List of virtual machines.
+      text: az vmware vm list --resource-group group1 --private-cloud cloud1 --cluster-name cluster1
+"""
+
+helps['vmware vm restrict-movement'] = """
+    type: command
+    short-summary: Enable or disable DRS-driven VM movement restriction.
+    examples:
+    - name: Enable or disable DRS-driven VM movement restriction.
+      text: az vmware vm restrict-movement --resource-group group1 --private-cloud cloud1 --cluster-name cluster1 --virtual-machine vm-209 --restrict-movement Enabled
 """
