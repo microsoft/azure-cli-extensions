@@ -13,23 +13,23 @@ interactions:
       Content-Type:
       - application/json
       Repeatability-First-Sent:
-      - Mon, 22 Apr 2024 07:33:13 GMT
+      - Mon, 22 Apr 2024 10:22:59 GMT
       Repeatability-Request-Id:
-      - 93bdb94e-007a-11ef-a0f5-e4fd45a09c30
+      - 4b07dda2-0092-11ef-a305-e4fd45a09c30
       User-Agent:
-      - AzureCli/1.8.0b1 azsdk-python-communication-rooms/1.1.0b1 Python/3.8.10 (Windows-10-10.0.22631-SP0)
+      - AzureCli/1.9.0 azsdk-python-communication-rooms/1.1.0b1 Python/3.8.10 (Windows-10-10.0.22631-SP0)
       x-ms-content-sha256:
       - 2xVVJJKx5brgL5bSWgeu9hhccJP/PkHHEzXUfUClsMI=
       x-ms-date:
-      - Mon, 22 Apr 2024 07:33:13 GMT
+      - Mon, 22 Apr 2024 10:22:59 GMT
       x-ms-return-client-request-id:
       - 'true'
     method: POST
     uri: https://sanitized.unitedstates.communication.azure.com/rooms?api-version=2023-10-30-preview
   response:
     body:
-      string: '{"id": "sanitized", "createdAt": "2024-04-22T07:33:14.2629508+00:00",
-        "validFrom": "2024-04-22T07:33:14.2311446+00:00", "validUntil": "2024-10-19T07:33:14.2311446+00:00",
+      string: '{"id": "sanitized", "createdAt": "2024-04-22T10:23:00.1156303+00:00",
+        "validFrom": "2024-04-22T10:23:00.0346756+00:00", "validUntil": "2024-10-19T10:23:00.0346756+00:00",
         "pstnDialOutEnabled": false}'
     headers:
       api-deprecated-versions:
@@ -39,11 +39,11 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Mon, 22 Apr 2024 07:33:13 GMT
+      - Mon, 22 Apr 2024 10:22:59 GMT
       location:
-      - '99470127976294640'
+      - '99429129911795787'
       ms-cv:
-      - ZBR8GkBsdEqCH/8H1E2BbQ.0
+      - 3KP3h6NqmUKwZoGFkcu9oQ.0
       repeatability-result:
       - accepted
       request-context:
@@ -53,7 +53,7 @@ interactions:
       transfer-encoding:
       - chunked
       x-azure-ref:
-      - 0uhImZgAAAADpo5lXVzADTJ3QhGePJmGiU04xRURHRTIxMjAAOWZjN2I1MTktYThjYy00Zjg5LTkzNWUtYzkxNDhhZTA5ZTgx
+      - 0gzomZgAAAAD2jE5PyYFKQZtL/ZUJSg5LU04xRURHRTMwMTUAOWZjN2I1MTktYThjYy00Zjg5LTkzNWUtYzkxNDhhZTA5ZTgx
       x-cache:
       - CONFIG_NOCACHE
     status:

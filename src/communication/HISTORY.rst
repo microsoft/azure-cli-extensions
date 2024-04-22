@@ -2,6 +2,10 @@
 
 Release History
 ===============
+1.9.0
+++++++
+* Update ACS Rooms to use 1.1.0 version
+
 1.8.0b1
 ++++++
 * Update ACS Rooms to use 1.1.0b1 version

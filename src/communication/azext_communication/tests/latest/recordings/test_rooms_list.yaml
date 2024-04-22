@@ -9,11 +9,11 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - AzureCli/1.8.0b1 azsdk-python-communication-rooms/1.1.0b1 Python/3.8.10 (Windows-10-10.0.22631-SP0)
+      - AzureCli/1.9.0 azsdk-python-communication-rooms/1.1.0b1 Python/3.8.10 (Windows-10-10.0.22631-SP0)
       x-ms-content-sha256:
       - 47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=
       x-ms-date:
-      - Mon, 22 Apr 2024 07:36:36 GMT
+      - Mon, 22 Apr 2024 10:26:12 GMT
       x-ms-return-client-request-id:
       - 'true'
     method: GET
@@ -29,9 +29,9 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Mon, 22 Apr 2024 07:36:37 GMT
+      - Mon, 22 Apr 2024 10:26:13 GMT
       ms-cv:
-      - Nmugjlc940SDXub4GNHitg.0
+      - eMk8+RqU2kyeNQffHpl3rA.0
       request-context:
       - appId=
       strict-transport-security:
@@ -39,7 +39,7 @@ interactions:
       transfer-encoding:
       - chunked
       x-azure-ref:
-      - 0hRMmZgAAAABdr5y/7U9rTKjug0hjxohzU04xRURHRTMxMDYAOWZjN2I1MTktYThjYy00Zjg5LTkzNWUtYzkxNDhhZTA5ZTgx
+      - 0RTsmZgAAAABJEMYo+ckxRZHuOW5nX9qdU04xRURHRTMxMDkAOWZjN2I1MTktYThjYy00Zjg5LTkzNWUtYzkxNDhhZTA5ZTgx
       x-cache:
       - CONFIG_NOCACHE
     status:

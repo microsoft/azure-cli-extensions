@@ -13,11 +13,11 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - AzureCli/1.8.0b1 azsdk-python-communication-identity/1.4.0 Python/3.8.10 (Windows-10-10.0.22631-SP0)
+      - AzureCli/1.9.0 azsdk-python-communication-identity/1.4.0 Python/3.8.10 (Windows-10-10.0.22631-SP0)
       x-ms-content-sha256:
       - 47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=
       x-ms-date:
-      - Mon, 22 Apr 2024 07:31:31 GMT
+      - Mon, 22 Apr 2024 10:21:13 GMT
       x-ms-return-client-request-id:
       - 'true'
     method: POST
@@ -34,25 +34,25 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Mon, 22 Apr 2024 07:31:32 GMT
+      - Mon, 22 Apr 2024 10:21:13 GMT
       ms-cv:
-      - Rt2T0nGcP06ERXFVAqUAUg.0
+      - oSvgmw7YJEm/7YXTyyKAAw.0
       request-context:
       - appId=
       strict-transport-security:
       - max-age=31536000;includeSubDomains
       x-azure-ref:
-      - 0VBImZgAAAAAPNN6i+JHnR5pIkOa7w0LVU04xRURHRTMxMTUAOWZjN2I1MTktYThjYy00Zjg5LTkzNWUtYzkxNDhhZTA5ZTgx
+      - 0GjomZgAAAACT4lnCInxBSr8hoeGfFk5DU04xRURHRTMxMDcAOWZjN2I1MTktYThjYy00Zjg5LTkzNWUtYzkxNDhhZTA5ZTgx
       x-cache:
       - CONFIG_NOCACHE
       x-processing-time:
-      - 57ms
+      - 55ms
     status:
       code: 201
       message: Created
 - request:
     body: '{"validFrom": null, "validUntil": null, "pstnDialOutEnabled": true, "participants":
-      {"8:acs:8261c457-f4fb-4a1f-9d7c-6861c4c22dfe_0000001f-a499-3ccc-08c8-3e3a0d007252":
+      {"8:acs:0f9a16f5-700a-44de-8abf-cec5c6d291e8_0000001f-a534-99df-04c8-3e3a0d00393d":
       {"role": "Presenter"}}}'
     headers:
       Accept:
@@ -66,23 +66,23 @@ interactions:
       Content-Type:
       - application/json
       Repeatability-First-Sent:
-      - Mon, 22 Apr 2024 07:31:32 GMT
+      - Mon, 22 Apr 2024 10:21:14 GMT
       Repeatability-Request-Id:
-      - 57760fce-007a-11ef-acb4-e4fd45a09c30
+      - 0c29a190-0092-11ef-a148-e4fd45a09c30
       User-Agent:
-      - AzureCli/1.8.0b1 azsdk-python-communication-rooms/1.1.0b1 Python/3.8.10 (Windows-10-10.0.22631-SP0)
+      - AzureCli/1.9.0 azsdk-python-communication-rooms/1.1.0b1 Python/3.8.10 (Windows-10-10.0.22631-SP0)
       x-ms-content-sha256:
-      - At+2471ksDxkDcc57Btl4z2hzrrrf/WiGWTVSaZ87UM=
+      - mEWZDmMS3mv8axnQR0hNrsYabEwA4+iTbTQULcKXLAU=
       x-ms-date:
-      - Mon, 22 Apr 2024 07:31:32 GMT
+      - Mon, 22 Apr 2024 10:21:14 GMT
       x-ms-return-client-request-id:
       - 'true'
     method: POST
     uri: https://sanitized.unitedstates.communication.azure.com/rooms?api-version=2023-10-30-preview
   response:
     body:
-      string: '{"id": "sanitized", "createdAt": "2024-04-22T07:31:33.0149453+00:00",
-        "validFrom": "2024-04-22T07:31:32.8971402+00:00", "validUntil": "2024-10-19T07:31:32.8971402+00:00",
+      string: '{"id": "sanitized", "createdAt": "2024-04-22T10:21:14.6675273+00:00",
+        "validFrom": "2024-04-22T10:21:14.5377796+00:00", "validUntil": "2024-10-19T10:21:14.5377796+00:00",
         "pstnDialOutEnabled": true}'
     headers:
       api-deprecated-versions:
@@ -92,11 +92,11 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Mon, 22 Apr 2024 07:31:32 GMT
+      - Mon, 22 Apr 2024 10:21:14 GMT
       location:
-      - '99479742176045520'
+      - '99434646756350824'
       ms-cv:
-      - qR9sw8eUEUmo0mV5cUxlRg.0
+      - lJ4PXQZOY0WETcuohdM6KQ.0
       repeatability-result:
       - accepted
       request-context:
@@ -106,7 +106,7 @@ interactions:
       transfer-encoding:
       - chunked
       x-azure-ref:
-      - 0VBImZgAAAACV18HaAgnMQJjUcgr9ubDnU04xRURHRTMwMDgAOWZjN2I1MTktYThjYy00Zjg5LTkzNWUtYzkxNDhhZTA5ZTgx
+      - 0GjomZgAAAADaAyrpSTwYTqc7gVWeMBwfU04xRURHRTIxMDgAOWZjN2I1MTktYThjYy00Zjg5LTkzNWUtYzkxNDhhZTA5ZTgx
       x-cache:
       - CONFIG_NOCACHE
     status:

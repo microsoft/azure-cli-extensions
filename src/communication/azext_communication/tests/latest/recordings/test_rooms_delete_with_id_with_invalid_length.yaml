@@ -11,11 +11,11 @@ interactions:
       Content-Length:
       - '0'
       User-Agent:
-      - AzureCli/1.8.0b1 azsdk-python-communication-rooms/1.1.0b1 Python/3.8.10 (Windows-10-10.0.22631-SP0)
+      - AzureCli/1.9.0 azsdk-python-communication-rooms/1.1.0b1 Python/3.8.10 (Windows-10-10.0.22631-SP0)
       x-ms-content-sha256:
       - 47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=
       x-ms-date:
-      - Mon, 22 Apr 2024 07:34:49 GMT
+      - Mon, 22 Apr 2024 10:24:29 GMT
       x-ms-return-client-request-id:
       - 'true'
     method: DELETE
@@ -31,9 +31,9 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Mon, 22 Apr 2024 07:34:49 GMT
+      - Mon, 22 Apr 2024 10:24:29 GMT
       ms-cv:
-      - TELWIzw3S0e19a1Qrreupw.0
+      - 7CHy1LZ7GUWzwQFh7MAJlw.0
       request-context:
       - appId=
       strict-transport-security:
@@ -41,7 +41,7 @@ interactions:
       transfer-encoding:
       - chunked
       x-azure-ref:
-      - 0GRMmZgAAAACNumL2AHExTo/cSbNxbTq+U04xRURHRTMwMTIAOWZjN2I1MTktYThjYy00Zjg5LTkzNWUtYzkxNDhhZTA5ZTgx
+      - 03TomZgAAAACmMp0EE2VeSYQlOm+YuTiNU04xRURHRTMwMjAAOWZjN2I1MTktYThjYy00Zjg5LTkzNWUtYzkxNDhhZTA5ZTgx
       x-cache:
       - CONFIG_NOCACHE
       x-ms-error-code:

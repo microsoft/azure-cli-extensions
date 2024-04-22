@@ -1,6 +1,6 @@
 interactions:
 - request:
-    body: '{"validFrom": "2024-04-22T08:31:27.257038", "validUntil": "2024-11-08T07:31:27.257038",
+    body: '{"validFrom": "2024-04-22T11:21:10.403483", "validUntil": "2024-11-08T10:21:10.403483",
       "pstnDialOutEnabled": false}'
     headers:
       Accept:
@@ -14,15 +14,15 @@ interactions:
       Content-Type:
       - application/json
       Repeatability-First-Sent:
-      - Mon, 22 Apr 2024 07:31:27 GMT
+      - Mon, 22 Apr 2024 10:21:10 GMT
       Repeatability-Request-Id:
-      - 5478d433-007a-11ef-a113-e4fd45a09c30
+      - 09fef7d3-0092-11ef-a989-e4fd45a09c30
       User-Agent:
-      - AzureCli/1.8.0b1 azsdk-python-communication-rooms/1.1.0b1 Python/3.8.10 (Windows-10-10.0.22631-SP0)
+      - AzureCli/1.9.0 azsdk-python-communication-rooms/1.1.0b1 Python/3.8.10 (Windows-10-10.0.22631-SP0)
       x-ms-content-sha256:
-      - KuNlkG9z3WKLzs3BV8li0PhwYRLxvgdUgXdwD8LZod0=
+      - 5tJO2AycGCyxmVK1K63cwUVIa2G4XnpowgJc72N2qh0=
       x-ms-date:
-      - Mon, 22 Apr 2024 07:31:27 GMT
+      - Mon, 22 Apr 2024 10:21:10 GMT
       x-ms-return-client-request-id:
       - 'true'
     method: POST
@@ -37,9 +37,9 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       date:
-      - Mon, 22 Apr 2024 07:31:27 GMT
+      - Mon, 22 Apr 2024 10:21:10 GMT
       ms-cv:
-      - K86413Y4nEeHt5qCXpT/dw.0
+      - PMaFvrRcj0iN2AbAz4ULcA.0
       request-context:
       - appId=
       strict-transport-security:
@@ -47,7 +47,7 @@ interactions:
       transfer-encoding:
       - chunked
       x-azure-ref:
-      - 0TxImZgAAAAAicXtwP6C9R5VyNUVVSoZ7U04xRURHRTIxMTkAOWZjN2I1MTktYThjYy00Zjg5LTkzNWUtYzkxNDhhZTA5ZTgx
+      - 0FjomZgAAAADbC5r2RTlqRbBHPe4JzdedU04xRURHRTMwMjAAOWZjN2I1MTktYThjYy00Zjg5LTkzNWUtYzkxNDhhZTA5ZTgx
       x-cache:
       - CONFIG_NOCACHE
       x-ms-error-code:
