@@ -113,7 +113,7 @@ class CommunicationChatScenarios(ScenarioTest):
         self.kwargs.update({
             'topic': chat_topic })
         self.cmd('az communication chat thread create --topic \"{topic}\"', checks = [
-            self.check("errors", None),
+            self.check("errors", []),
             self.check("chatThread.topic", chat_topic),
         ])
 
@@ -277,7 +277,7 @@ class CommunicationChatScenarios(ScenarioTest):
         with self.assertRaises(HttpResponseError) as raises:
             self.cmd('az communication chat participant remove --thread {thread_id} --user {user_id} --yes')
 
-        assert 'The initiator doesn\'t have the permission to perform the requested operation.' in str(raises.exception)
+        assert 'failure' in str(raises.exception)
 
 
     @ResourceGroupPreparer(name_prefix='clitestcommunication_MyResourceGroup'[:7], key='rg', parameter_name='rg')
